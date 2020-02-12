@@ -7,7 +7,7 @@
 #include "BasePlusComissionEmployee.h"
 using namespace std;
 
-void virtualViaPoiner(const Employee* const baseClassPtr);
+void virtualViaPointer(const Employee* const baseClassPtr);
 void virtualViaReference(const Employee& baseClassRef);
 
 int main()
@@ -30,6 +30,19 @@ int main()
     cout << "\nearned $" << comissionEmployee.earnings() << "\n\n";
     basePlusComissionEmployee.print();
     cout << "\nearned $" << basePlusComissionEmployee.earnings() << "\n\n";
+
+    vector<Employee*> employees(3);
+
+    employees[0] = &salariedEmployee;
+    employees[1] = &comissionEmployee;
+    employees[2] = &basePlusComissionEmployee;
+
+    for (const Employee* employeePtr : employees)
+        virtualViaPointer(employeePtr);
+
+    for(const Employee * employeePtr:employees)
+        virtualViaReference(*employeePtr);
+
 }
 
 void virtualViaPointer(const Employee* const baseClassPtr) {
