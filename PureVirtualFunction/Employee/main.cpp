@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <iomanip>
 #include <vector>
+#include <typeinfo>
 #include "Employee.h"
 #include "SalariedEmployee.h"
 #include "ComissionEmployee.h"
@@ -24,13 +25,6 @@ int main()
         "Bob", "Lewis", "444-44-4444", 5000, 0.04, 300
     );
 
-    salariedEmployee.print();
-    cout << "\nearned $" << salariedEmployee.earnings() << "\n\n";
-    comissionEmployee.print();
-    cout << "\nearned $" << comissionEmployee.earnings() << "\n\n";
-    basePlusComissionEmployee.print();
-    cout << "\nearned $" << basePlusComissionEmployee.earnings() << "\n\n";
-
     vector<Employee*> employees(3);
 
     employees[0] = &salariedEmployee;
@@ -40,14 +34,13 @@ int main()
     for (const Employee* employeePtr : employees)
         virtualViaPointer(employeePtr);
 
-    for(const Employee * employeePtr:employees)
-        virtualViaReference(*employeePtr);
-
+   
 }
 
 void virtualViaPointer(const Employee* const baseClassPtr) {
     baseClassPtr->print();
-    cout << "\nearned $" << baseClassPtr->earnings() << "\n\n";
+    cout << "\nearned $" << baseClassPtr->earnings() << "\n";
+    cout << typeid(baseClassPtr).name() << endl;
 }
 void virtualViaReference(const Employee& baseClassRef) {
     baseClassRef.print();
