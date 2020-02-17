@@ -14,6 +14,7 @@ bool noSym(char ch) {
 
 bool testPalindrome(string str) {
 	string noSymStr, reStr;
+	transform(str.begin(), str.end(), str.begin(), ::tolower);
 	copy_if(str.begin(), str.end(), back_inserter(noSymStr), noSym);
 	/*for (auto elem : noSymStr)
 		cout << elem;*/
