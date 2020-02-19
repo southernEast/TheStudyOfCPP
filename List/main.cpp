@@ -1,5 +1,7 @@
 ﻿#include <iostream> 
 #include "List.h"
+#include "Stack.h"
+#include "Queue.h"
 using namespace std;
 
 template<typename T>
@@ -45,9 +47,18 @@ void testList(List<T>& listObj, const string& typeName) {
 }
 
 int main() {
-	List<int> integerList;
-	testList(integerList, "integer");
+	Queue<int> intQueue;
+
+	for (int i = 0; i < 10; ++i) {
+		intQueue.enqueue(i);
+		intQueue.printQueue();
+	}
 	
+	int value;
+	while (!intQueue.isEmptyQueue()) {
+		intQueue.dequeue(value);
+		cout << value << " ";
+	}
 
 	return 0;
 }
